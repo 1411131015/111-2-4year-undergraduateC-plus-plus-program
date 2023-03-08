@@ -1,0 +1,102 @@
+#include <stdio.h>
+#define ID 10
+
+struct student
+{
+    char name[ID];
+    unsigned int stu_id;
+    float math;
+    float com;
+    float avg;
+};
+
+typedef struct student  STUDENT;
+
+void bubble(STUDENT Mystu[ID]);
+
+int main(void)
+{
+    int  j;
+    STUDENT stu, stu_class[ID] = { {"Alan", 2,98,72,0},
+                                   {"Ben", 3,76,32,0},
+                                   {"Candy", 6,98,67,0},
+                                   {"Derril",7,89,32,0},
+                                   {"Elien", 8,98,55,0},
+                                   {"Franklin", 9,89,32,0},
+                                   {"Gary", 10,98,65,0},
+                                   {"Howard", 11,99,32,0},
+                                   {"Iris", 12,98,71,0},
+                                   {"Jason", 13,76,91,0} };
+
+
+    puts("Data items in original order\n");
+    printf("%10s%5s%8s%8s%14s\n", "Name:", "ID", "MATH", "COM", "Averages");
+    for (j = 0; j < ID; j++)
+    {
+        stu_class[j].avg = (stu_class[j].math + stu_class[j].com) / 2;
+    }
+
+    for (j = 0; j < ID; j++)
+    {
+        printf("%10s", stu_class[j].name);
+        printf("%5d", stu_class[j].stu_id);
+        printf("    %.2f", stu_class[j].math);
+        printf("    %.2f", stu_class[j].com);
+        printf("    %.2f", stu_class[j].avg);
+        printf("\n");
+    }
+
+    bubble(stu_class);
+    
+    puts("\nData items in ascending order\n");
+    printf("%10s%5s%8s%8s%14s\n", "Name:", "ID", "MATH", "COM", "Averages");
+    for (j = 0; j < ID; j++)
+    {
+        printf("%10s", stu_class[j].name);
+        printf("%5d", stu_class[j].stu_id);
+        printf("    %.2f", stu_class[j].math);
+        printf("    %.2f", stu_class[j].com);
+        printf("    %.2f", stu_class[j].avg);
+        printf("\n");
+    }
+
+    puts("");
+
+    int mid = (0 + (ID - 1)) / 2;
+    printf("\n  中位數: %8s%5d   %.2f\n", stu_class[mid].name, stu_class[mid].stu_id,stu_class[mid].avg);
+
+    printf("\n  最高：");
+    printf("%10s", stu_class[0].name);
+    printf("%5d", stu_class[0].stu_id);
+    printf("    %.2f", stu_class[0].math);
+    printf("    %.2f", stu_class[0].com);
+    printf("    %.2f", stu_class[0].avg);
+    printf("\n");
+
+    printf("\n  最低：");
+    printf("%10s", stu_class[9].name);
+    printf("%5d", stu_class[9].stu_id);
+    printf("    %.2f", stu_class[9].math);
+    printf("    %.2f", stu_class[9].com);
+    printf("    %.2f", stu_class[9].avg);
+    printf("\n");
+    puts("");
+}
+
+void bubble(STUDENT Mystu[ID])
+{
+    STUDENT HOLD;
+    int pass, i;
+    for (pass = 1; pass < ID; ++pass) 
+    { 
+        for (i = 0; i < ID - pass; ++i) 
+        {       
+            if (Mystu[i].avg < Mystu[i+1].avg)
+            {
+                HOLD = Mystu[i];
+                Mystu[i] = Mystu[i+1];
+                Mystu[i + 1] = HOLD;
+            }
+        }
+    }
+}

@@ -1,0 +1,68 @@
+建立一個結構，成員定義如下:
+struct student
+{
+    char name[20];
+    unsigned int age;
+    float math;
+    float computer;
+    double average;
+};
+
+建立一個結構陣列，請使用鍵盤輸入資料至該結構陣列中，再呼叫副程式把結構內容依據平均成績(由小到大)逐筆印出。
+#include <stdio.h>
+#include <stdlib.h>
+#define stu 5
+
+struct student
+{
+    char name[20];
+    unsigned int age;
+    float math;
+    float computer;
+    double average;
+};
+typedef struct student ST;
+void bubble(ST myStu[stu]);
+
+int main()
+{
+    int i, j;
+    ST STU[stu];
+
+    for (i = 0; i < stu; ++i) {
+        scanf_s("%s", STU[i].name, 20);
+        scanf_s("%u", &STU[i].age);
+        scanf_s("%f%f", &STU[i].math, &STU[i].computer);
+        STU[i].average = (STU[i].math + STU[i].computer) / 2;
+    }
+
+    bubble(STU);
+    printf("\n");
+
+    for (i = 0; i < stu; ++i)
+        printf("%21s  %4u  %.2f  %.2f  %.2f\n",
+            STU[i].name, STU[i].age, STU[i].math, STU[i].computer, STU[i].average);
+
+
+    system("pause");
+    return 0;
+}
+
+void bubble(ST myStu[stu]) {
+    int pass, i;
+    ST temp;
+    for (pass = 1; pass < stu; ++pass) {
+
+        // loop to control number of comparisons per pass   
+        for (i = 0; i < stu - pass; ++i) {
+
+            // compare adjacent elements and swap them if first 
+            // element is greater than second element           
+            if (myStu[i].average > myStu[i + 1].average) {
+                temp = myStu[i];
+                myStu[i] = myStu[i + 1];
+                myStu[i + 1] = temp;
+            }
+        }
+    }
+}

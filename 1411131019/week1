@@ -1,0 +1,47 @@
+#include <stdio.h>
+#define SIZE 4
+#define STU 13
+int main(void)
+{
+    int key, result = 0, i, j;
+
+    struct student {               
+        char name[STU];           
+        unsigned int stu_id;        
+        float math;                
+        float computer;            
+        float avg;                  
+    };
+
+    typedef struct student STUDENT;      
+    STUDENT stu ,stu_class[STU]= {      
+                        { "Alice",2,98,72,0},
+                        {"Danny",3,76,32,0},
+                        {"Tom",6,98,67,0},
+                        {"Nina",7,89,32,0},
+                        {"May",8,98,55,0},
+                        {"Sindy",9,89,32,0},
+                        { "Steven",10,98,65,0},
+                        {"Ellen",11,99,32,0},
+                        {"Nicole",12,98,71,0},
+                        {"Tan",13,76,91,0},
+                        {"Jenny",18,93,49,0},
+                        {"Bob",19,67,82,0},
+                        {"Tim",20,66,98,0}, };
+       
+        for (j = 0; j < STU; j++)
+            stu_class[j].avg = (stu_class[j].math + stu_class[j].computer) / 2;      
+    
+
+        for (j = 0; j < STU; j++)
+        {
+            printf("%6s", stu_class[j].name);
+            printf("%6d", stu_class[j].stu_id);
+            printf("%8.2f", stu_class[j].math);
+            printf("%8.2f", stu_class[j].computer);
+            printf("%8.2f", stu_class[j].avg);
+            puts("");
+        }
+
+       
+    }
