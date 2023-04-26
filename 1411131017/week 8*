@@ -1,4 +1,4 @@
-//題目: 請根據以下超連結修改課本pp.655-661程式碼，加入學生學號、數學、電腦、平均成績等欄位，輸入資料後放入鏈結串列中並印出結果，並且能夠選擇刪除某一筆資料。
+/*題目: 請根據以下超連結修改課本pp.655-661程式碼，加入學生學號、數學、電腦、平均成績等欄位，輸入資料後放入鏈結串列中並印出結果，並且能夠選擇刪除某一筆資料。*/
 
 // Fig. 12.3: fig12_03.c
 // Inserting and deleting nodes in a list
@@ -7,6 +7,7 @@
 // self-referential structure                       
 struct listNode {                                      
    int ID; // each listNode contains a character 
+   char name[50];
    int math,com,avg;
    struct listNode *nextPtr; // pointer to next node
 }; 
@@ -15,8 +16,8 @@ typedef struct listNode ListNode; // synonym for struct listNode
 typedef ListNode *ListNodePtr; // synonym for ListNode*
 
 // prototypes
-void insert(ListNodePtr *sPtr, int id,int math,int computer,int avg);
-char delete(ListNodePtr *sPtr, char value);
+void insert(ListNodePtr *sPtr, char name[],int id,int math,int computer,int avg);
+char delete(ListNodePtr *sPtr, int id);
 int isEmpty(ListNodePtr sPtr);
 void printList(ListNodePtr currentPtr);
 void instructions(void);
@@ -24,6 +25,7 @@ void instructions(void);
 int main(void)
 { 
    ListNodePtr startPtr = NULL; // initially there are no nodes
+   char name[50];
    int ID,math,com,avg; // char entered by user
 
    instructions(); // display the menu
@@ -36,7 +38,9 @@ int main(void)
 
       switch (choice) { 
          case 1:
-            printf("%s", "請輸入學號: ");
+            printf("%s", "請輸入姓名: ");
+			scanf("%s", name);
+			printf("%s", "請輸入學號: ");
             scanf("\n%d", &ID);
              printf("%s", "請輸入數學: ");
             scanf("\n%d", &math);
@@ -44,7 +48,7 @@ int main(void)
             scanf("\n%d", &com);
             avg=(math+com)/2;
             printf("%s %d\n", "平均成績: ",avg);
-            insert(&startPtr,ID,math,com,avg); // insert item in list
+            insert(&startPtr,name,ID,math,com,avg); // insert item in list
             printList(startPtr);
             break;
          case 2: // delete an element
@@ -89,12 +93,13 @@ void instructions(void)
 } 
 
 // insert a new value into the list in sorted order
-void insert(ListNodePtr *sPtr, int id,int math,int computer,int avg)
+void insert(ListNodePtr *sPtr, char name[], int id,int math,int computer,int avg)
 { 
    ListNodePtr newPtr = malloc(sizeof(ListNode)); // create node
 
    if (newPtr != NULL) { // is space available/*新節點配置成功 */
-      newPtr->ID = id; // place value in node
+      strcpy(newPtr->name, name);
+	  newPtr->ID = id; // place value in node
       newPtr->math = math;
       newPtr->com = computer;
       newPtr->avg = avg;
@@ -180,7 +185,7 @@ void printList(ListNodePtr currentPtr)
 
       // while not the end of the list
       while (currentPtr != NULL) { 
-         printf("%d %d %d %d --> ", currentPtr->ID,currentPtr->math,currentPtr->com,currentPtr->avg);
+         printf("%s %d %d %d %d --> ", currentPtr->name,currentPtr->ID,currentPtr->math,currentPtr->com,currentPtr->avg);
          currentPtr = currentPtr->nextPtr;   
       } 
 
