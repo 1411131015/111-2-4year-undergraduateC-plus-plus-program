@@ -1,0 +1,86 @@
+//（題目 1)撰寫C++程式透過鍵盤輸人資料，並使用傳位址呼叫取得結果並印出：
+//1‧ 建立函數 void cube( int &)計算正方體體積(a^3);
+//2．建立函數 float cylinder( int &, int &），輸人 2個參數，計算圓柱體體積(a^2*元 *b);
+//3.建立函數int volume( int &,int &,int &)輪人 3 個參數，計算長方體體積(a*6*C)。
+#include <iostream> //數 
+
+using namespace std;
+
+void cube(int &);
+float cyclinder(int &,int &);
+int volume(int &,int &,int &);
+
+int main() 
+{	
+    int a,b,c;
+    cout << "\n寫正方體積邊長:";//1
+    cin >> a;
+    cube(a);
+    cout<<"正方體積=："<<a<<endl;
+    
+    cout<<"\n輸入圓柱半徑，輸入圓柱高：";//2
+    cin >> a >> b;
+    cout << "圓柱體體積=" << cylinder(a,b) << endl;
+    
+    cout<<"\n輸入長方體邊長：";//3
+    cin>>a;
+    cout<<"\n輸入長方體邊寬：";
+    cin>>b;
+    cout<<"\n輸入長方體邊高：";
+    cin>>c;
+    cout<<"長方形體積="<<volume(a,b,c)<<endl;
+    return 0;
+}
+
+void cube(int &a){
+	a=a*a*a;
+}
+
+float cyclinder(int &a,int &b){
+	return a*a*3.14159*b;//算圓(半
+}
+
+int volume(int &a,int &b,int &c){
+	return a*b*c;
+}
+
+
+////////改
+#include <iostream> //數 
+
+using namespace std;
+
+void cube(int&);
+int cylinder(int&, int&);
+int volume(int&, int&, int&);
+
+int main()
+{
+    int a, b, c;
+    cout << "請輸入正方體邊長："; //1
+    cin >> a;
+    cube(a);
+    cout << "正方體體積：" << a << endl;
+
+    cout << "請輸入圓柱底面半徑和高："; //2
+    cin >> a >> b;
+    cout << "圓柱體積：" << cylinder(a, b) << endl;
+
+    cout << "請輸入長方體三邊長："; //3
+    cin >> a >> b >> c;
+    cout << "長方體體積：" << volume(a, b, c) << endl;
+
+    return 0;
+}
+
+void cube(int& a) {
+    a = a * a * a;
+}
+
+int cylinder(int& a, int& b) {
+    return a * a * 3.14159 * b;
+}
+
+int volume(int& a, int& b, int& c) {
+    return a * b * c;
+}
