@@ -10,14 +10,14 @@
 class Date
 {
 public:
-	Date(); // constructor
+	Date(int,int,int); // constructor
 	void setDate(int, int, int); // set hour, minute and second
 	void printUniversal() const; // print time in universal-time format
-	void printROC() const; // print time in standard-time format
+	void printStandard() const; // print time in standard-time format
 private:
-	unsigned int year; // 0 - 23 (24-hour clock format)
-	unsigned int month; // 0 - 59
-	unsigned int day; // 0 - 59
-}; // end class Time
+	unsigned int year; // 0 - 9999
+	unsigned int month; // 0 - 12
+	unsigned int day; // 0 - 31
+}; 
 
 #endif
