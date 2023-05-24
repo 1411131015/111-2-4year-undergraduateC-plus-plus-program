@@ -1,0 +1,30 @@
+main2.cpp
+
+
+#include <iostream>
+#include <string>
+#include "pet.h"
+using namespace std;
+
+
+int main()
+{
+    string nameofdog;
+    int ageofdog;
+    pet mypet("ABC");
+    cout << "Initial dog name is：" << mypet.getdogname() << endl;
+    cout << "Initial dog age is：" << 0 << endl;
+
+    cout << "\nPlease enter the dog name：" << endl;
+    getline(cin, nameofdog);
+
+    cout << "\nPlease enter the dog age：" << endl;
+    cin >> ageofdog;
+
+    mypet.setdogname(nameofdog);
+    mypet.setdogage(ageofdog);
+
+    cout << endl;
+    mypet.displaymessage();
+
+}

@@ -1,0 +1,28 @@
+pet.h
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class pet
+{
+public:
+    pet(string name);                       
+    ~pet();
+    void setdogname(string name);                        
+   
+    void setdogage(int age);                             
+   
+
+    string getdogname() const;                            
+   
+    int getdogage() const;                               
+   
+
+    void displaymessage() const;                         
+   
+
+private:
+    string dogname;
+    int dogage;
+};

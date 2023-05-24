@@ -1,0 +1,24 @@
+利用「建構子」與「解構子」建立一個寵物類別，建構子參數包含寵物姓名與年齡，並且將此類別分別設置成:
+
+(1) 介面檔pet.h(抽離出實作內容的類別檔案)
+(2) 類別內容(實作檔)pet_source.cpp。
+(3) 主程式檔 source.cpp
+
+#include <iostream>
+#include <string> // program uses C++ standard string class
+using namespace std;
+class Pet
+{
+public:
+    // function that sets the course name
+        Pet(string name);
+        ~Pet();
+        void setPetName(string name);
+        void setPetAge(int age);
+        string getPetName() const;
+        int getPetAge() const;
+        void displayMessage() const;
+private:
+    string PetName = "unknown"; // course name for this GradeBook
+    int PetAge = 0;
+}; // end class GradeBook  
