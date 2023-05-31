@@ -1,29 +1,38 @@
+pet.cpp
+
 #include <iostream>
-#include <iomanip>
-#include <stdexcept>
 #include <string>
 #include "pet.h"
 using namespace std;
 
-pet::pet(string name)                         //設定狗狗名字副程式
+pet::pet(string name, int age) : birthday(Date(2023, 5, 27))  //給建構子pet、物件birthday預設參數
 {
-    dogname = name;
+    setdogname(name, age);
 }
 
 
 pet:: ~pet() {
-    cout << "bye bye！" << endl;
+    cout << "\nbye bye！" << endl;                           //解構子在程式結束前會顯示bye bye！
 }
 
 
-void pet::setdogname(string name)                         //設定狗狗名字副程式
-{
+void pet::setdogname(string name, int age)                   //將使用者輸入的姓名、年齡傳遞到私有成員中
+{                                                            //並判斷年齡是否在合理範圍內
     dogname = name;
+    while (age > 20) {
+        cout << "Please enter again" << endl;
+        cin >> age;
+    }
+    dogage = age;
+                              
 }
 
+void pet::setdogbirth(int y, int m, int d)
+{
+    birthday.setDate(y, m, d);                    //設定狗狗生日
+}
 
-
-void pet::setdogage(int age)                              //設定狗狗年齡副程式
+/*void pet::setdogage(int age)                              //設定狗狗年齡副程式
 {
     while (age > 20) {
         cout << "Please enter again" << endl;
@@ -31,13 +40,8 @@ void pet::setdogage(int age)                              //設定狗狗年齡�
     }
     dogage = age;
 }
+*/
 
-void pet::setdogbirth(int y, int m, int d)
-{
-    year = y;
-    month = m;
-    day = d;
-}
 
 string pet::getdogname() const                            //取得狗狗名字副程式
 {
@@ -51,24 +55,10 @@ int pet::getdogage() const                                //取得狗狗年齡�
     return dogage;
 }
 
-int pet::getdogyear() const                                
-{
-    return year;
-}
-
-int pet::getdogmonth() const
-{
-    return month;
-}
-
-int pet::getdogday() const
-{
-    return day;
-}
-
 
 void pet::displaymessage() const                          //列印最終結果副程式
 {
-    cout << "The dog name is  " << getdogname() << "  age is：" << getdogage() <<endl;
-    cout <<getdogyear() << "/"<< getdogmonth() << "/" << getdogday();
+    cout << "The dog name is ： " << getdogname() << "  age is：" << getdogage() << endl;
+    cout << "The dog birthday is：";
+    birthday.printDate();
 }

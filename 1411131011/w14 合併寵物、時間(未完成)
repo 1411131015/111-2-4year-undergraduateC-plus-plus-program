@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdexcept> // for invalid_argument exception class
 #include "Date.h" // include definitionof class Time from Time.h
+#include "pet.h"
 using namespace std;
 
 int main()
